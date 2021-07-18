@@ -35,11 +35,11 @@ class CryptoHash {
         }
         
 
-        uint32_t operator[](int index) const {
+        constexpr uint32_t operator[](int index) const {
             return hashed_value[index];
         }
 
-        size_t length() const {
+        constexpr size_t length() const {
             return size;
         }
 
