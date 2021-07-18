@@ -44,8 +44,10 @@ class CryptoHash {
         }
 
         friend ostream& operator<<(ostream& os, const CryptoHash<H,N>& hash) {
+            ios_base::fmtflags f(cout.flags());
             for (int i = 0; i < hash.size; i++ )
                 os << std::hex << setfill('0') << setw(8) << hash[i]; 
+            cout.flags( f );
             return os;
         }
 
