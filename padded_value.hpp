@@ -34,9 +34,9 @@ class PaddedValue {
 
 
         template<typename F>
-            constexpr unsigned char get_char_from_input(unsigned int i) const { 
-                return get_byte<F>(input,i);
-            }
+        constexpr unsigned char get_char_from_input(unsigned int i) const { 
+            return get_byte<F>(input,i);
+        }
 
         constexpr unsigned char get_padded_byte(unsigned int i) const {
             return (i == size || i < total_size-8) ? 
