@@ -8,14 +8,14 @@
 
 using namespace std;
 
-template<typename H, int N,typename W = uint32_t>
+template<typename H, int N>
 class CryptoHash {
     private:
-        array<W,N> hashed_value;
+        array<uint32_t,N> hashed_value;
         const int size;
 
     protected:
-        constexpr CryptoHash(array<W,N> _hashed_value, int _size = 0) :
+        constexpr CryptoHash(array<uint32_t,N> _hashed_value, int _size = 0) :
             hashed_value(_hashed_value),
             size(_size ? _size : hashed_value.size()) {}
 
@@ -34,7 +34,7 @@ class CryptoHash {
           return !(this == second_hash);
         }
         
-        W operator[](int index) const {
+        uint32_t operator[](int index) const {
           return hashed_value[index];
         }
 
