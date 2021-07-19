@@ -9,7 +9,7 @@ using namespace std;
 
 
 template<typename H=const char *>
-class MD5 : public CryptoHash<H,4> {
+class MD5 : public CryptoHash<4> {
   private:
 
      constexpr static int s[] = { 7, 12, 17, 22,  7, 12, 17, 22,  7, 12, 17, 22,  7, 12, 17, 22, 5,  9, 14, 20,  5,  9, 14, 20,  5,  9, 14, 20,  5,  9, 14, 20, 4, 11, 16, 23,  4, 11, 16, 23,  4, 11, 16, 23,  4, 11, 16, 23, 6, 10, 15, 21,  6, 10, 15, 21,  6, 10, 15, 21,  6, 10, 15, 21 };
@@ -78,7 +78,7 @@ class MD5 : public CryptoHash<H,4> {
   public:
 
     constexpr MD5(H input) :
-        CryptoHash<H,4>(create_hash(PaddedValue_T(input,false),{})) {}
+        CryptoHash<4>(create_hash(PaddedValue_T(input,false),{})) {}
 
 
 

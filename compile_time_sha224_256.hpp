@@ -18,7 +18,7 @@ template<typename H>
 class SHA256;
 
 template<typename H=const char *>
-class SHA224_256 : public CryptoHash<H,8> {
+class SHA224_256 : public CryptoHash<8> {
   private:
 
     constexpr static uint32_t ssig0(uint32_t x) {
@@ -120,7 +120,7 @@ class SHA224_256 : public CryptoHash<H,8> {
   
     template <typename ... InitialValues>
     constexpr SHA224_256(H input, int size, InitialValues ... initial_values) :
-        CryptoHash<H,8>(create_hash(PaddedValue_T(input,true),{ initial_values... }),size) {}
+        CryptoHash<8>(create_hash(PaddedValue_T(input,true),{ initial_values... }),size) {}
 
     friend class SHA224<H>;
     friend class SHA256<H>;

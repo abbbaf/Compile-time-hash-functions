@@ -11,7 +11,7 @@ class CircularQueue {
     const array<T,N> arr;
 
     template<typename ... Args>
-    constexpr CircularQueue(int new_item, CircularQueue<T,N> queue, Args ... args) :
+    constexpr CircularQueue(T new_item, CircularQueue<T,N> queue, Args ... args) :
       arr(CircularQueue<T,N,Counter-1>(new_item, queue,args...,queue[N - Counter]).arr) {}
 
     constexpr CircularQueue(array<T,N> _arr) :

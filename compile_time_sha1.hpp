@@ -14,7 +14,7 @@ using namespace std;
 
 
 template<typename H=const char *>
-class SHA1 : public CryptoHash<H,HASH_SIZE> {
+class SHA1 : public CryptoHash<HASH_SIZE> {
   private:
 
     constexpr static uint32_t scheduled(CircularQueue<uint32_t,16> queue) {
@@ -98,7 +98,7 @@ class SHA1 : public CryptoHash<H,HASH_SIZE> {
   public:
 
     constexpr SHA1(H input) :
-        CryptoHash<H,HASH_SIZE>(create_hash(PaddedValue_T(input,true),{})) {}
+        CryptoHash<HASH_SIZE>(create_hash(PaddedValue_T(input,true),{})) {}
 
 };
 
