@@ -17,6 +17,9 @@ class SHA384;
 template<typename>
 class SHA512;
 
+template<typename>
+class SHA512_256;
+
 template<typename H=const char *>
 class SHA384_512 : public CryptoHash<8,uint64_t> {
   private:
@@ -123,6 +126,7 @@ class SHA384_512 : public CryptoHash<8,uint64_t> {
 
     friend class SHA384<H>;
     friend class SHA512<H>;
+    friend class SHA512_256<H>;
 
 };
 
