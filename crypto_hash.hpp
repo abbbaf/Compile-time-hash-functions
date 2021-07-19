@@ -22,16 +22,14 @@ class CryptoHash {
 
     public:
 
-        template<typename T, int N2>
-        bool operator ==(const CryptoHash<N2,Word> &second_hash) const {
+        bool operator ==(const CryptoHash<N,Word> &second_hash) const {
             for (int i = 0; i < size; i++) {
                 if (hashed_value[i] != second_hash[i]) return false;
             }
             return true;
         }
 
-        template<typename T, int N2>
-        bool operator !=(const CryptoHash<N2,Word> &second_hash) const {
+        bool operator !=(const CryptoHash<N,Word> &second_hash) const {
             return !(this == second_hash);
         }
         
