@@ -1,9 +1,12 @@
 #ifndef CRYPTO_HASH_H
 #define CRYPTO_HASH_H
 
+#include <iomanip>
+#include <cstdint>
+#include <iostream>
+
 #include "array.hpp"
 #include "utils.hpp"
-#include <iomanip>
 
 #include "circular_queue.hpp"
 #include "padded_value.hpp"
@@ -20,6 +23,7 @@ class CryptoHash {
         const Array<uint32_t,HASH_SIZE> hashed_value;
 
     protected:
+
         constexpr CryptoHash(Array<uint32_t,HASH_SIZE> _hashed_value) :
           hashed_value(_hashed_value) {}
 

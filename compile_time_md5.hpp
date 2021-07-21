@@ -75,8 +75,6 @@ class MD5 : public CryptoHash<4> {
     constexpr MD5(H input) :
         CryptoHash<4>(create_hash(PaddedValue_T(input,false),{})) {}
 
-
-
 };
 
 

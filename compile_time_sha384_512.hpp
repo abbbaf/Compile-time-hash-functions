@@ -1,10 +1,6 @@
 #ifndef COMPILE_TIME_SHA384_512_H
 #define COMPILE_TIME_SHA384_512_H
 
-#include <cstdlib>
-#include <array>
-#include <iomanip>
-
 #include "crypto_hash.hpp"
 
 #define MASK 0xffffffff
