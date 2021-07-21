@@ -6,7 +6,7 @@ It can be used to generate a hash at compile time, such that the binary file
 will have the hash but not the original string.
 It can also be used at runtime.
 
-# Supports C++11/14/17/20 
+## Supports C++11/14/17/20 
 
 ## Classes
 In all classes the type T should be either const char * or a primitive type.
