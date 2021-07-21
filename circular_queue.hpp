@@ -3,8 +3,6 @@
 
 #include "array.hpp"
 
-using namespace std;
-
 template<typename T, size_t N, int Counter=N>
 class CircularQueue {
   public:
