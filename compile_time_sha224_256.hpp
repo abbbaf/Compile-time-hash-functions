@@ -1,10 +1,6 @@
 #ifndef COMPILE_TIME_SHA224_256_H
 #define COMPILE_TIME_SHA224_256_H
 
-#include <cstdlib>
-#include <array>
-#include <iomanip>
-
 #include "crypto_hash.hpp"
 
 #define MASK 0xffffffff
@@ -17,8 +13,8 @@ class SHA224;
 template<typename H>
 class SHA256;
 
-template<typename H=const char *>
-class SHA224_256 : public CryptoHash<8> {
+template<typename H=const char *,int HASH_SIZE>
+class SHA224_256 : public CryptoHash<HASH_SIZE> {
   private:
 
     constexpr static uint32_t ssig0(uint32_t x) {
@@ -38,7 +34,7 @@ class SHA224_256 : public CryptoHash<8> {
 
 
     struct hash_parameters {
-        const array<uint32_t,8> arr;
+        const Array<uint32_t,8,HASH_SIZE> arr;
 
         template <typename ... Args>
         constexpr hash_parameters(Args ... args): arr{args...} {} 
@@ -47,7 +43,7 @@ class SHA224_256 : public CryptoHash<8> {
     };
 
 
-    using Hash_T = SHA224_256<H>;
+    using Hash_T = SHA224_256<H,HASH_SIZE>;
     using PaddedValue_T = PaddedValue<H>;
     using Section_T = Section<H>;
 
@@ -70,8 +66,9 @@ class SHA224_256 : public CryptoHash<8> {
 
 
 
-    constexpr array<uint32_t,8> create_hash(PaddedValue_T value, hash_parameters h, int block_index=0) const {
-      return block_index*64 == value.total_size ? array<uint32_t,8>(h.arr)
+    constexpr Array<uint32_t,HASH_SIZE> create_hash(PaddedValue_T value, hash_parameters h, int block_index=0) const {
+      return block_index*64 == value.total_size 
+        ? h.arr.truncate()
         : create_hash(
             value, 
             hash_block(Section_T(value,block_index*16,scheduled),h,h,block_index*16),
@@ -119,14 +116,14 @@ class SHA224_256 : public CryptoHash<8> {
     }
   
     template <typename ... InitialValues>
-    constexpr SHA224_256(H input, int size, InitialValues ... initial_values) :
-        CryptoHash<8>(create_hash(PaddedValue_T(input,true),{ initial_values... }),size) {}
+    constexpr SHA224_256(H input, InitialValues ... initial_values) :
+        CryptoHash<HASH_SIZE>(create_hash(PaddedValue_T(input,true),{ initial_values... })) {}
 
     friend class SHA224<H>;
     friend class SHA256<H>;
 
 };
 
-template<typename T> constexpr uint32_t SHA224_256<T>::k[64];
+template<typename T,int HASH_SIZE> constexpr uint32_t SHA224_256<T,HASH_SIZE>::k[64];
 
 #endif

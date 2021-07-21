@@ -4,11 +4,11 @@
 #include "compile_time_sha224_256.hpp"
 
 template<typename H=const char *>
-class SHA224 : public SHA224_256<H> {
+class SHA224 : public SHA224_256<H,7> {
 
   public:
 
-    constexpr SHA224(H input) : SHA224_256<H>(input,7,
+    constexpr SHA224(H input) : SHA224_256<H,7>(input,
                     (uint32_t)  0xc1059ed8, (uint32_t)  0x367cd507, 
                     (uint32_t)  0x3070dd17, (uint32_t)  0xf70e5939, 
                     (uint32_t)  0xffc00b31, (uint32_t)  0x68581511, 

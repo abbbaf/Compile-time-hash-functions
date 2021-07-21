@@ -20,8 +20,11 @@ class SHA512;
 template<typename>
 class SHA512_256;
 
-template<typename H=const char *>
-class SHA384_512 : public CryptoHash<8,uint64_t> {
+template<typename>
+class SHA512_224;
+
+template<typename H=const char *, int HASH_SIZE>
+class SHA384_512 : public CryptoHash<HASH_SIZE> {
   private:
 
     constexpr static uint64_t ssig0(uint64_t x) {
@@ -40,7 +43,7 @@ class SHA384_512 : public CryptoHash<8,uint64_t> {
 
 
     struct hash_parameters {
-        const array<uint64_t,8> arr;
+        const Array<uint64_t,8> arr;
 
         template <typename ... Args>
         constexpr hash_parameters(Args ... args): arr{args...} {} 
@@ -49,7 +52,7 @@ class SHA384_512 : public CryptoHash<8,uint64_t> {
     };
 
 
-    using Hash_T = SHA384_512<H>;
+    using Hash_T = SHA384_512<H,HASH_SIZE>;
     using PaddedValue_T = PaddedValue<H,uint64_t>;
     using Section_T = Section<H,uint64_t>;
 
@@ -72,8 +75,18 @@ class SHA384_512 : public CryptoHash<8,uint64_t> {
 
 
 
-    constexpr array<uint64_t,8> create_hash(PaddedValue_T value, hash_parameters h, int block_index=0) const {
-      return block_index*128 == value.total_size ? array<uint64_t,8>(h.arr)
+    constexpr Array<uint32_t,HASH_SIZE> create_hash(PaddedValue_T value, hash_parameters h, int block_index=0) const {
+      return block_index*128 == value.total_size 
+        ? Array<uint32_t,16,HASH_SIZE>(
+               (uint32_t) (h[0] >> 32), (uint32_t) h[0],
+               (uint32_t) (h[1] >> 32), (uint32_t) h[1],
+               (uint32_t) (h[2] >> 32), (uint32_t) h[2],
+               (uint32_t) (h[3] >> 32), (uint32_t) h[3],
+               (uint32_t) (h[4] >> 32), (uint32_t) h[4],
+               (uint32_t) (h[5] >> 32), (uint32_t) h[5],
+               (uint32_t) (h[6] >> 32), (uint32_t) h[6],
+               (uint32_t) (h[7] >> 32), (uint32_t) h[7]
+            ).truncate()
         : create_hash(
             value, 
             hash_block(Section_T(value,block_index*16,scheduled),h,h,block_index*16),
@@ -121,15 +134,16 @@ class SHA384_512 : public CryptoHash<8,uint64_t> {
     }
   
     template <typename ... InitialValues>
-    constexpr SHA384_512(H input, int size, InitialValues ... initial_values) :
-        CryptoHash<8,uint64_t>(create_hash(PaddedValue_T(input,true),{ initial_values... }),size) {}
+    constexpr SHA384_512(H input, InitialValues ... initial_values) :
+        CryptoHash<HASH_SIZE>(create_hash(PaddedValue_T(input,true),{ initial_values... })) {}
 
     friend class SHA384<H>;
     friend class SHA512<H>;
     friend class SHA512_256<H>;
+    friend class SHA512_224<H>;
 
 };
 
-template<typename T> constexpr uint64_t SHA384_512<T>::k[80];
+template<typename T, int HASH_SIZE> constexpr uint64_t SHA384_512<T,HASH_SIZE>::k[80];
 
 #endif

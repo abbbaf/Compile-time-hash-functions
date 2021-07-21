@@ -1,20 +1,12 @@
 #ifndef PADDED_VALUE_H
 #define PADDED_VALUE_H
 
-template<typename H>
-class MD5;
+template<typename,typename>class Section;
 
-template<typename H>
-class SHA1;
-
-template<typename H>
-class SHA224_256;
-
-template<typename H>
-class SHA384_512;
-
-template<typename,typename>
-class Section;
+template<typename> class MD5;
+template<typename> class SHA1;
+template<typename,int> class SHA224_256;
+template<typename,int> class SHA384_512;
 
 template<typename H,typename Word=uint32_t>
 class PaddedValue {
@@ -74,12 +66,11 @@ class PaddedValue {
             return byte_length == 64 ? get_word_32(i) : get_word_64(i);
         } 
 
+        friend class Section<H,Word>;
         friend class MD5<H>;
         friend class SHA1<H>;
-        friend class SHA224_256<H>;
-        friend class SHA384_512<H>;
-        friend class Section<H,Word>;
-
+        template<typename,int> friend class SHA224_256;
+        template<typename,int> friend class SHA384_512;
 };
 
 #endif

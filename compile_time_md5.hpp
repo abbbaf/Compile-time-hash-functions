@@ -1,8 +1,6 @@
 #ifndef COMPILE_TIME_MD5_H
 #define COMPILE_TIME_MD5_H
-#include <cstdlib>
-#include <array>
-#include <iostream>
+
 #include "crypto_hash.hpp"
 
 using namespace std;
@@ -23,7 +21,7 @@ class MD5 : public CryptoHash<4> {
     using PaddedValue_T = PaddedValue<H>;
 
     struct hash_parameters {
-      const array<uint32_t,4> arr;
+      const Array<uint32_t,4> arr;
       const uint32_t f_array[4][5];
 
       template <typename ... Args>
@@ -41,8 +39,8 @@ class MD5 : public CryptoHash<4> {
       constexpr uint32_t operator [](int index) { return arr[index]; }
     };
 
-    constexpr array<uint32_t,4> create_hash(PaddedValue_T value, hash_parameters h, int block_index=0) {
-      return block_index*64 == value.total_size ? array<uint32_t,4>{
+    constexpr Array<uint32_t,4> create_hash(PaddedValue_T value, hash_parameters h, int block_index=0) {
+      return block_index*64 == value.total_size ? Array<uint32_t,4>{
           endianess_convertion(h[0]),
           endianess_convertion(h[1]),
           endianess_convertion(h[2]),

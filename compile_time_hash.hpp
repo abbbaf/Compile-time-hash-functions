@@ -4,4 +4,5 @@
 #include "compile_time_sha384.hpp"
 #include "compile_time_sha512.hpp"
 #include "compile_time_sha512_256.hpp"
+#include "compile_time_sha512_224.hpp"
 #include "compile_time_md5.hpp"

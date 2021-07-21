@@ -1,17 +1,10 @@
 #ifndef SECTION_H
 #define SECTION_H
 
-template<typename>
-class SHA1;
-
-template<typename>
-class SHA224;
-
-template<typename>
-class SHA224_256;
-
-template<typename H>
-class SHA384_512;
+template<typename> class MD5;
+template<typename> class SHA1;
+template<typename,int> class SHA224_256;
+template<typename,int> class SHA384_512;
 
 template<typename H, typename Word=uint32_t>
 class Section {
@@ -58,11 +51,10 @@ class Section {
         return queue[index];
     }
 
+    friend class MD5<H>;
     friend class SHA1<H>;
-    friend class SHA224<H>;
-    friend class SHA224_256<H>;
-    friend class SHA384_512<H>;
-
+    template<typename,int> friend class SHA224_256;
+    template<typename,int> friend class SHA384_512;
 };
 
 #endif

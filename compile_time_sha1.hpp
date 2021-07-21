@@ -1,20 +1,17 @@
 #ifndef COMPILE_TIME_SHA1_H
 #define COMPILE_TIME_SHA1_H
 
-#include <cstdlib>
-#include <array>
-#include <iomanip>
-
 #include "crypto_hash.hpp"
 
 #define MASK 0xffffffff
-#define HASH_SIZE 5
+
+#define SHA1_HASH_SIZE 5
 
 using namespace std;
 
 
 template<typename H=const char *>
-class SHA1 : public CryptoHash<HASH_SIZE> {
+class SHA1 : public CryptoHash<SHA1_HASH_SIZE> {
   private:
 
     constexpr static uint32_t scheduled(CircularQueue<uint32_t,16> queue) {
@@ -26,7 +23,7 @@ class SHA1 : public CryptoHash<HASH_SIZE> {
 
 
     struct hash_parameters {
-      const array<uint32_t,5> arr;
+      const Array<uint32_t,SHA1_HASH_SIZE> arr;
       const uint32_t f_array[4][5];
 
       template <typename ... Args>
@@ -36,7 +33,6 @@ class SHA1 : public CryptoHash<HASH_SIZE> {
                 {arr[2],arr[1],MASK,arr[3],MASK}, 
                 {arr[2],arr[1],arr[3],arr[1],arr[2]}, 
                 {arr[2],arr[1],MASK,arr[3],MASK} } {}
-
       constexpr hash_parameters() : 
         hash_parameters((uint32_t) 0x67452301, (uint32_t) 0xefcdab89, 
                         (uint32_t) 0x98badcfe, (uint32_t) 0x10325476, 
@@ -52,8 +48,8 @@ class SHA1 : public CryptoHash<HASH_SIZE> {
     using Section_T = Section<H>;
 
 
-    constexpr array<uint32_t,HASH_SIZE> create_hash(PaddedValue_T value, hash_parameters h, int block_index=0) {
-      return block_index*64 == value.total_size ? array<uint32_t,HASH_SIZE>(h.arr)
+    constexpr Array<uint32_t,SHA1_HASH_SIZE> create_hash(PaddedValue_T value, hash_parameters h, int block_index=0) {
+      return block_index*64 == value.total_size ? h.arr
         : create_hash(
             value, 
             hash_block(Section_T(value,block_index*16,scheduled),h,h,block_index*16),
@@ -98,7 +94,7 @@ class SHA1 : public CryptoHash<HASH_SIZE> {
   public:
 
     constexpr SHA1(H input) :
-        CryptoHash<HASH_SIZE>(create_hash(PaddedValue_T(input,true),{})) {}
+        CryptoHash<SHA1_HASH_SIZE>(create_hash(PaddedValue_T(input,true),{})) {}
 
 };
 
