@@ -9,8 +9,6 @@
 #include "padded_value.hpp"
 #include "section.hpp"
 
-using namespace std;
-
 //HASH_SIZE = (hash size in bits)/32
 
 template<int HASH_SIZE>
