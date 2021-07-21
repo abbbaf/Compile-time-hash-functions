@@ -37,7 +37,7 @@ class CryptoHash {
 
 
         bool operator !=(const CryptoHash<HASH_SIZE> &second_hash) const {
-            return !(this == second_hash);
+            return !(*this == second_hash);
         }
 
         uint32_t operator [](int index) {
