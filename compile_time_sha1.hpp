@@ -7,9 +7,6 @@
 
 #define SHA1_HASH_SIZE 5
 
-using namespace std;
-
-
 template<typename H=const char *>
 class SHA1 : public CryptoHash<SHA1_HASH_SIZE> {
   private:
