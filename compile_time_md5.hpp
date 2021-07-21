@@ -3,9 +3,6 @@
 
 #include "crypto_hash.hpp"
 
-using namespace std;
-
-
 template<typename H=const char *>
 class MD5 : public CryptoHash<4> {
   private:
