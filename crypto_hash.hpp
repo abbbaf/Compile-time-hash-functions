@@ -43,11 +43,11 @@ class CryptoHash {
         }
 
 
-        friend std:ostream& operator<<(ostream& os, const CryptoHash<HASH_SIZE>& hash) {
-            ios_base::fmtflags f(cout.flags());
+        friend std::ostream& operator<<(std::ostream& os, const CryptoHash<HASH_SIZE>& hash) {
+            std::ios_base::fmtflags f(std::cout.flags());
             for (int i = 0; i < HASH_SIZE; i++ )
-              os << std::hex << setfill('0') << setw(8) << hash.hashed_value[i]; 
-            cout.flags(f);
+              os << std::hex << std::setfill('0') << std::setw(8) << hash.hashed_value[i]; 
+            std::cout.flags(f);
             return os;
         }
 

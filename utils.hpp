@@ -1,6 +1,8 @@
 #ifndef UTIL_H
 #define UTIL_H
 
+#include <cstdlib>
+
 constexpr int get_string_size(const char * input,int i = 0) {
     return input[i] == '\0' ? i : get_string_size(input,i+1);
 }
@@ -34,7 +36,7 @@ constexpr unsigned char get_byte(char * input, int i) {
 }
 
 template<>
-unsigned char get_byte(string input, int i) {
+unsigned char get_byte(std::string input, int i) {
     return input[i];
 }
 
@@ -55,7 +57,7 @@ constexpr size_t get_size(char * input) {
 }
 
 template<>
-size_t get_size(string input) {
+size_t get_size(std::string input) {
     return input.size();
 }
 
