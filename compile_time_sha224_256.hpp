@@ -5,8 +5,6 @@
 
 #define MASK 0xffffffff
 
-using namespace std;
-
 template<typename H>
 class SHA224;
 
