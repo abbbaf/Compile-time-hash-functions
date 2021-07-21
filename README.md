@@ -48,7 +48,7 @@ For any other type it will just hash the value of the pointer.
   
  ## Example
   
- `#include <cstdlib>
+ ```#include <cstdlib>
   #include <iostream>
  
   #include "compile_time_hash.hpp"
@@ -61,7 +61,7 @@ For any other type it will just hash the value of the pointer.
   int main() {
     cout << hash << endl;
   }
-  `
+  ```
   prints: a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e
 
   The string "Hello World" will not appear int the final binary.
