@@ -59,7 +59,7 @@ For any other type it will just hash the value of the pointer.
   constexpr SHA256 hash_value = SHA256("Hello World");
   
   int main() {
-    cout << hash << endl;
+    cout << hash_value << endl;
   }
   ```
   prints: a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e
