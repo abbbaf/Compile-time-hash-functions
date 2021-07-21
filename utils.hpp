@@ -1,8 +1,5 @@
 #ifndef UTIL_H
 #define UTIL_H
-#include <cstdlib>
-
-using namespace std;
 
 constexpr int get_string_size(const char * input,int i = 0) {
     return input[i] == '\0' ? i : get_string_size(input,i+1);
