@@ -9,8 +9,6 @@
 
 #define MASK 0xffffffff
 
-using namespace std;
-
 template<typename>
 class SHA384;
 
