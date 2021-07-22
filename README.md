@@ -10,7 +10,7 @@ It can also be used at runtime.
 
 ## Classes
 In all classes the type T should be either const char * or a primitive type.
-std:string can be used at runtime only.
+std:string can be used at runtime only (for c++ versions below 20).
 For any other type it will just hash the value of the pointer.
 
 ### C++11/14
