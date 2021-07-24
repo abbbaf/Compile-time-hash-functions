@@ -63,7 +63,7 @@ For any other type it will just hash the value of the pointer.
   ```
   prints: a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e
 
-  The string "Hello World" will not appear int the final binary.
+  The string "Hello World" will not appear in the final binary.
   
   
   
