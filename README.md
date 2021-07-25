@@ -14,7 +14,7 @@ std:string can be used at runtime only (for c++ versions below 20).
 For any other type it will just hash the value of the pointer.
 
 ### C++11/14
-
+```
 * MD5<T>(T value)
 * SHA1<T>(T value)
 * SHA224<T>(T value)  
@@ -23,9 +23,10 @@ For any other type it will just hash the value of the pointer.
 * SHA512<T>(T value)
 * SHA512_224<T>(T value)
 * SHA512_256<T>(T value)
+```
  
 #### If T is const char * (string literal) than the following classes can also be used:
-  
+ ``` 
 * MD5String(T value)
 * SHA1String(T value)
 * SHA224String(T value)  
@@ -34,7 +35,7 @@ For any other type it will just hash the value of the pointer.
 * SHA512String(T value)
 * SHA512_224String(T value)
 * SHA512_256String(T value)
-  
+  ```
 
  ###  C++17/20
   Same as older versions but without the <T>.
