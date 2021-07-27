@@ -10,8 +10,7 @@ project(compile_time_hash
 
 include(GNUInstallDirs)
 
-add_library(compile_time_hash INTERFACE)
-target_sources(compile_time_hash
+add_library(compile_time_hash INTERFACE
         array.hpp
         circular_queue.hpp
         compile_time_hash.hpp
@@ -28,8 +27,7 @@ target_sources(compile_time_hash
         crypto_hash.hpp
         padded_value.hpp
         section.hpp
-        utils.hpp
-        )
+        utils.hpp)
 
 target_include_directories(compile_time_hash INTERFACE
         $<BUILD_INTERFACE:${compile_time_hash_SOURCE_DIR}>
