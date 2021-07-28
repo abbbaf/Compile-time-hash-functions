@@ -65,12 +65,35 @@ For any other type it will just hash the value of the pointer.
   prints: a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e
 
   The string "Hello World" will not appear in the final binary.
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+## Usage with CMake
+
+If you want to use CMake in your project, you can include this library in two ways:
+
+### As a submodule
+
+1. Add this repository as a git submodule:
+   `git submodule add https://github.com/abbbaf/Compile-time-hash-functions.git`
+1. Include this code in your CMakeLists.txt:
+   ```cmake
+   add_subdirectory(Compile-time-hash-functions)
+   target_link_libraries(YOUR_TARGET compile_time_hash)
+   ```
+1. Include it in your `.cpp` file:
+   ```cpp
+   #include <compile_time_hash.hpp>
+   ```
+### Install it globally
+
+1. Clone this repository somewhere:
+   `git clone https://github.com/abbbaf/Compile-time-hash-functions.git`
+1. Install it into the global include directory:
+1. Add this to your CMakeLists.txt:
+   ```cmake
+   find_package(compile_time_hash REQUIRED)
+   target_link_libraries(CTH_test_2 compile_time_hash::compile_time_hash)
+    ```
+1. Include it in your `.cpp` file:
+   ```cpp
+   #include <compile_time_hash/compile_time_md5.hpp>
+   ```
