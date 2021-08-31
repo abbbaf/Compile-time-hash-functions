@@ -38,7 +38,7 @@ For any other type it will just hash the value of the pointer.
   ```
 
  ###  C++17/20
-  Same as older versions but without the <T>.
+  Same as older versions but without the T.
   e.g. MD5(T value)
   
  ## Operators supported
